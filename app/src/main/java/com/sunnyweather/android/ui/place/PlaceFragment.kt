@@ -12,6 +12,7 @@ import com.sunnyweather.android.R
 import kotlinx.android.synthetic.main.fragment_place.*
 import  androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProviders
+import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.ui.weather.WeatherActivity
 
 
@@ -33,7 +34,7 @@ class PlaceFragment :Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if (viewModel.isPlaceSaved()){
+        if (viewModel.isPlaceSaved()&& activity is MainActivity){
             val place=viewModel.getSavedPlace()
             val intent=Intent(context,WeatherActivity::class.java).apply {
                 putExtra("location_lng",place.location.lng)
