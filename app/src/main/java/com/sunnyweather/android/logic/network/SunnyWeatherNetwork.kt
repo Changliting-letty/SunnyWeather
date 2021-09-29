@@ -13,6 +13,15 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.math.log
 
 object SunnyWeatherNetwork{
+    //天气信息
+    private  val weatherService=ServiceCreator.create<WeatherService>()
+
+    suspend fun getDailyWeather(lng:String,lat:String)= weatherService.getDailyWeather(lng,lat).await()
+
+    suspend fun getRealtimeWeather(lng:String,lat:String)= weatherService.getRealtimeWeather(lng,lat).await()
+    //下边是城市信息
+
+
     private  val placeService=ServiceCreator.create<PlaceService>()  //接口的动态代理对象
 
     suspend fun searchPlaces(query: String)= placeService.searchPlaces(query).await()  //定义函数调用接口中的相关方法
